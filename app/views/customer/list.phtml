@@ -1,0 +1,74 @@
+<div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-category">All Persons List</h5>
+                <h4 class="card-title"> Customers</h4>
+                <?php
+                     echo $this->tag->linkTo([
+                        "customer/add/",
+                        "Add New",
+                        "class" => "btn btn-primary",
+                        "title" => "Edit Article"
+                    ]); 
+                ?>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Country
+                      </th>
+                      <th>
+                        City
+                      </th>
+                      <th class="text-right">
+                        Salary
+                      </th>
+                      <th class="text-center">
+                        Action
+                      </th>
+                    </thead>
+                    <tbody>
+                        
+                    <?php   
+                                    
+                        foreach($this->view->movies as $key => $movie){ ?>
+                            <tr>
+                                <td>                                   
+                                    <?= $movie['mv_title'] ?>
+                                </td>
+                                <td>
+                                Chile
+                                </td>
+                                <td>
+                                Gloucester
+                                </td>
+                                <td class="text-right">
+                                $78,615
+                                </td>
+                                <td class="text-center">
+                                    <a href="#">Delete</a>  &nbsp; &nbsp;
+                                    <?php 
+                                        echo $this->tag->linkTo([
+                                            "customer/edit/".$movie['mv_id'],
+                                            "Edit",
+                                            "title" => "Edit Article"
+                                        ]); 
+                                    ?>
+                                </td>                        
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -6,9 +6,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class CustomersMigration_103
+ * Class OperatorsMigration_104
  */
-class InvoicesMigration_103 extends Migration
+class OperatorsMigration_104 extends Migration
 {
     /**
      * Define the table structure
@@ -17,7 +17,7 @@ class InvoicesMigration_103 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('Invoices', [
+        $this->morphTable('operators', [
                 'columns' => [
                     new Column(
                         'id',
@@ -31,65 +31,36 @@ class InvoicesMigration_103 extends Migration
                         ]
                     ),
                     new Column(
-                        'customer_id',
-                        [
-                            'type'     => Column::TYPE_INTEGER,
-                            'size'     => 10,
-                            'unsigned' => true,
-                            'notNull'  => true,
-                        ]
-                    ),
-
-                    new Column(
-                        'description',
+                        'name',
                         [
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 200,
+                            'after' => 'id'
                         ]
                     ),
-
                     new Column(
-                        'date_created',
+                        'username',
                         [
-                            'type' => Column::TYPE_DATE,
+                            'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
+                            'size' => 200,
+                            'after' => 'name'
                         ]
                     ),
-
                     new Column(
-                        'amount',
+                        'password',
                         [
-                            'type' => Column::TYPE_DECIMAL,
+                            'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
-                            'size' => 65,
+                            'size' => 200,
+                            'after' => 'username'
                         ]
                     )
-
-
                 ],
                 'indexes' => [
-                    new Index('PRIMARY', ['id'], 'PRIMARY'),
-                    new Index(
-                        'customer_id',
-                        [
-                            'customer_id',
-                        ]
-                    ),
+                    new Index('PRIMARY', ['id'], 'PRIMARY')
                 ],
-
-                'references' => [
-                    new Reference(
-                        'invoices_ibfk_1',
-                        [
-                            'referencedSchema'  => 'customer_control',
-                            'referencedTable'   => 'customers',
-                            'columns'           => ['customer_id'],
-                            'referencedColumns' => ['id'],
-                        ]
-                    ),
-                ],
-
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
                     'AUTO_INCREMENT' => '1',

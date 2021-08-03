@@ -11,3 +11,10 @@ $loader->registerDirs(
         $config->application->modelsDir
     ]
 )->register();
+
+$loader->registerNamespaces(
+    [
+        'App\CustomORM' => APP_PATH . '/CustomORM/',
+        'App\Forms' => APP_PATH . '/Forms'
+    ]
+);
