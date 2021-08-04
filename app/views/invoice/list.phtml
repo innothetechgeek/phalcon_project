@@ -4,11 +4,11 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-category">All Persons List</h5>
-                <h4 class="card-title"> Customers </h4>
+                <h5 class="card-category">All Invoices List</h5>
+                <h4 class="card-title"> Invoices </h4>
                 <?php
                      echo $this->tag->linkTo([
-                        "customer/add/",
+                        "invoice/add/",
                         "Add New",
                         "class" => "btn btn-primary",
                         "title" => "Edit Article"
@@ -20,47 +20,47 @@
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Name
+                        Customer Name
                       </th>
                       <th>
-                        Address
+                        Product Name
                       </th>
                       <th>
-                        Balance
+                        Amount Due
+                      </th>
+                      <th>
+                        Amount Paid
+                      </th>
+                      <th>
+                        Description
                       </th>
                       <th class="text-right">
                         Date Created
-                      </th>
-                      <th class="text-center">
-                        Action
                       </th>
                     </thead>
                     <tbody>
                         
                     <?php   
-                                    
-                        foreach($this->view->customers as $key => $customer){ ?>
+                            
+                        foreach($this->view->invoices as $key => $invoice){ ?>
                             <tr>
                                 <td>                                   
-                                    <?= $customer['name'] ?>
+                                    <?= $invoice['customer_name'] ?>
                                 </td>
-                                <td>
-                                    <?= $customer['address'] ?>
+                                <td>                                   
+                                    <?= $invoice['product_name'] ?>
+                                </td>                                
+                                <td >
+                                    R<?= number_format($invoice['amount_due'],2) ?>
                                 </td>
                                 <td >
-                                    <?= $customer['balance'] ?>
+                                    <?= is_numeric($invoice['amount_paid']) ?  "R".number_format($invoice['amount_paid'],2) : $invoice['amount_paid'] ?>
+                                </td>
+                                <td >
+                                    <?= $invoice['description'] ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= $customer['date_created'] ?>
-                                </td>
-                                <td class="text-center">
-                                    <a href="#" data-customer-id = "<?=$customer['id']?>" class = "delete-customer">Delete</a>  &nbsp; &nbsp;
-                                    <?php 
-                                        echo $this->tag->linkTo([
-                                            "customer/edit/".$customer['id'],
-                                            "Edit",
-                                        ]); 
-                                    ?>
+                                    <?= $invoice['date_created'] ?>
                                 </td>                        
                             </tr>
                         <?php } ?>

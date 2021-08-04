@@ -15,8 +15,6 @@ class Crud{
 
     }
 
-   
-
     public function create($data_array, $table){
         
         $columns = implode(',', array_keys($data_array));        

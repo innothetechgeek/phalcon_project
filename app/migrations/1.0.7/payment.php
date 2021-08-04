@@ -41,6 +41,15 @@ class PaymentMigration_107 extends Migration
                         ]
                     ),
                     new Column(
+                        'invoice_id',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'unsigned' => true,
+                            'notNull' => true,
+                            'size' => 10,
+                        ]
+                    ),
+                    new Column(
                         'date_created',
                         [
                             'type' => Column::TYPE_DATE,
@@ -58,9 +67,21 @@ class PaymentMigration_107 extends Migration
                         ]
                     )
                 ],
+                'references' => [
+                    new Reference(
+                        'payments_ibfk_3',
+                        [
+                            'referencedSchema'  => 'customer_control',
+                            'referencedTable'   => 'invoices',
+                            'columns'           => ['invoice_id'],
+                            'referencedColumns' => ['id'],
+                        ]
+                    ),
+                ],
                 'indexes' => [
                     new Index('PRIMARY', ['id'], 'PRIMARY'),
-                    new Index('customer_id', ['customer_id'], '')
+                    new Index('customer_id', ['customer_id'], ''),
+                    new Index('invoice_id', ['invoice_id'], '')
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',

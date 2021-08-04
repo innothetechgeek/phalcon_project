@@ -1,0 +1,57 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"> 
+            <h5 class="title">Add New Invoice</h5>
+            </div>
+            <div class="card-body">
+            <?= $this->tag->form("customer/addSubmit"); ?>
+                <div class="row">
+                    <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                        <label>Select Customer</label>
+                            <?= $form->render('customer'); ?>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                <div class="col-md-12 pl-1">
+                    <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                        <label>Select Product</label>
+                            <?= $form->render('product'); ?>
+                        </div>
+                    </div>      
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12 pl-1">
+                    <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                            <label>Amount Due</label>
+                                <?= $form->render('amount'); ?>
+                            </div>
+                         </div>      
+                    </div>
+                </div>  
+                <div class="col-md-12 pl-1">
+                    <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                            <label>Description</label>
+                                <?= $form->render('description'); ?>
+                            </div>
+                         </div>      
+                    </div>
+                </div>                
+                <div class="col-12 d-flex justify-content-end">                      
+                    <div class="col-6">                    
+                        <?= $form->render('update'); ?> 
+                    </div>                                        
+                </div>                 
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
