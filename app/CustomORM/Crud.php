@@ -2,7 +2,7 @@
 
 namespace App\CustomORM;
 
-include_once "DbConfig.php";
+include_once "DbConnection.php";
 
 
 class Crud{
@@ -14,6 +14,8 @@ class Crud{
         $this->conn = getdbconnection();
 
     }
+
+   
 
     public function create($data_array, $table){
         

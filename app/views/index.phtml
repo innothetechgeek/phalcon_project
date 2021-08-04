@@ -45,22 +45,24 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./dashboard.html">
-              <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
-            </a>
+           <?php
+               echo $this->tag->linkTo([
+                    "customer/list",
+                    " <i class='now-ui-icons design_app'></i>
+                    <p>
+                      Dashboard
+                    </p>",
+                ]);
+            ?>
           </li>
           <li>
-            <a href="./icons.html">
-              <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li>
-            <a href="./map.html">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
-            </a>
+            <?php
+               echo $this->tag->linkTo([
+                    "invoice/list",
+                   '<i class="now-ui-icons location_map-big"></i>
+                   <p>Maps</p>',
+                ]);
+            ?>
           </li>
           <li>
             <a href="./notifications.html">
