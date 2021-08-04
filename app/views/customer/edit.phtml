@@ -6,7 +6,10 @@
             <h5 class="title">Edit Customer</h5>
             </div>
             <div class="card-body">
-            <?= $this->tag->form("customer/edit-submit"); ?>
+                <?php
+                    $customer_id = $this->view->customer[0]['id'];
+                ?>
+            <?= $this->tag->form("customer/editSubmit/$customer_id"); ?>
                 <div class="row">
                 <div class="col-md-6 pr-1">
                     <div class="form-group">

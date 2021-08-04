@@ -7,7 +7,7 @@ function getdbconnection(){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "MMS";
+    $dbname = "customer_control";
 
     try{
         $connection = new MysqlConnection(

@@ -15,6 +15,7 @@ $loader->registerDirs(
 $loader->registerNamespaces(
     [
         'App\CustomORM' => APP_PATH . '/CustomORM/',
-        'App\Forms' => APP_PATH . '/Forms'
+        'App\Forms' => APP_PATH . '/Forms',
+        'App\Controllers' => APP_PATH .'/Controllers',
     ]
 );

@@ -6,18 +6,18 @@ use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
 /**
- * Class InvoicesMigration_104
+ * Class InvoicesLineMigration_105
  */
-class InvoiceLineMigration_104 extends Migration{
-
-     /**
+class PaymentMigration_105 extends Migration
+{
+    /**
      * Define the table structure
      *
      * @return void
      */
     public function morph()
     {
-        $this->morphTable('invoices_line', [
+        $this->morphTable('payment', [
                 'columns' => [
                     new Column(
                         'id',
@@ -31,22 +31,13 @@ class InvoiceLineMigration_104 extends Migration{
                         ]
                     ),
                     new Column(
-                        'invoice_id',
+                        'customer_id',
                         [
                             'type' => Column::TYPE_INTEGER,
                             'unsigned' => true,
                             'notNull' => true,
                             'size' => 10,
                             'after' => 'id'
-                        ]
-                    ),
-                    new Column(
-                        'description',
-                        [
-                            'type' => Column::TYPE_VARCHAR,
-                            'notNull' => true,
-                            'size' => 200,
-                            'after' => 'customer_id'
                         ]
                     ),
                     new Column(
@@ -69,22 +60,21 @@ class InvoiceLineMigration_104 extends Migration{
                 ],
                 'indexes' => [
                     new Index('PRIMARY', ['id'], 'PRIMARY'),
-                    new Index('invoice_id', ['invoice_id'], '')
+                    new Index('customer_id', ['customer_id'], '')
                 ],
 
                 'references' => [
                     new Reference(
-                        'invoiceline_ibfk_1',
+                        'payment_ibfk_1',
                         [
                             'referencedSchema'  => 'customer_control',
-                            'referencedTable'   => 'invoice',
-                            'columns'           => ['invoice_id'],
+                            'referencedTable'   => 'cusomter',
+                            'columns'           => ['customer_id'],
                             'referencedColumns' => ['id'],
                         ]
-                    ),
+                    )
                 ],
-
-
+               
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
                     'AUTO_INCREMENT' => '1',
@@ -93,6 +83,26 @@ class InvoiceLineMigration_104 extends Migration{
                 ],
             ]
         );
+    }
+
+    /**
+     * Run the migrations
+     *
+     * @return void
+     */
+    public function up()
+    {
+
+    }
+
+    /**
+     * Reverse the migrations
+     *
+     * @return void
+     */
+    public function down()
+    {
+
     }
 
 }

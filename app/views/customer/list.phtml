@@ -1,10 +1,11 @@
 <div class="content">
+    
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h5 class="card-category">All Persons List</h5>
-                <h4 class="card-title"> Customers</h4>
+                <h4 class="card-title"> Customers </h4>
                 <?php
                      echo $this->tag->linkTo([
                         "customer/add/",
@@ -22,13 +23,13 @@
                         Name
                       </th>
                       <th>
-                        Country
+                        Address
                       </th>
                       <th>
-                        City
+                        Balance
                       </th>
                       <th class="text-right">
-                        Salary
+                        Date Created
                       </th>
                       <th class="text-center">
                         Action
@@ -38,25 +39,25 @@
                         
                     <?php   
                                     
-                        foreach($this->view->movies as $key => $movie){ ?>
+                        foreach($this->view->customers as $key => $customer){ ?>
                             <tr>
                                 <td>                                   
-                                    <?= $movie['mv_title'] ?>
+                                    <?= $customer['name'] ?>
                                 </td>
                                 <td>
-                                Chile
+                                    <?= $customer['address'] ?>
                                 </td>
-                                <td>
-                                Gloucester
+                                <td >
+                                    <?= $customer['balance'] ?>
                                 </td>
                                 <td class="text-right">
-                                $78,615
+                                    <?= $customer['date_created'] ?>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#">Delete</a>  &nbsp; &nbsp;
+                                    <a href="#" data-customer-id = "<?=$customer['id']?>" class = "delete-customer">Delete</a>  &nbsp; &nbsp;
                                     <?php 
                                         echo $this->tag->linkTo([
-                                            "customer/edit/".$movie['mv_id'],
+                                            "customer/edit/".$customer['id'],
                                             "Edit",
                                             "title" => "Edit Article"
                                         ]); 

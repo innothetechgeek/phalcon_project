@@ -18,7 +18,12 @@
   <link href="assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" /> -->
 
     <?php
-      echo  $this->assets->outputCss();
+
+      echo $this->tag->stylesheetLink('public/assets/css/bootstrap.min.css');
+      echo $this->tag->stylesheetLink('public/assets/css/now-ui-dashboard.css?v=1.5.0');
+      echo $this->tag->stylesheetLink('public/assets/css/jquery.toast.min');
+      echo $this->tag->stylesheetLink('public/assets/css/jquery-confirm.min.css');
+
     ?>
 
 </head>
@@ -161,7 +166,10 @@
      
 
        <!-- Main Content -->
+     
        <?php echo $this->getContent(); ?>
+
+      
 
       <footer class="footer">
         <div class=" container-fluid ">
@@ -193,26 +201,57 @@
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
 
-    });
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <?php echo $this->tag->javascriptInclude('public/js/jquery.toast.min'); ?>
+  <?php echo $this->tag->javascriptInclude('public/js/jquery-confirm.min'); ?>
+
+ 
+  
+ <?php 
+ 
+ if($this->session->has('message')){ ?>
+    <script>
+        $.toast({
+          heading: 'Information',
+          text:  "<?= $this->session->get('message') ?>",
+          icon: 'info',
+          loader: true,        // Change it to false to disable loader
+          position: 'bottom-right',
+          loaderBg: '#9EC600'  // To change the background
+        })
+    </script>
+  <?php 
+       $this->session->remove('message');
+  } ?>
+
+  <script>
+   
+      $('.delete-customer').click(function(){
+
+        $customer_id =  $(this).attr("data-customer-id");
+
+        url =  "<?= $this->url->getBaseUri()."customer/delete"; ?>";
+
+        $.confirm({
+            title: 'Confirm',
+            content: 'Are you sure you want to delete this customer ?',
+            buttons: {
+                  cancel: function(){
+
+                  },
+                  Yes :{
+                      text: 'Yes',
+                      btnClass: 'btn-blue',
+                      keys: ['enter', 'shift'],
+                      action: function(){
+                          window.location = url+'/'+$customer_id;
+                      }
+                  }
+              }
+        });
+      })
   </script>
 </body>
 

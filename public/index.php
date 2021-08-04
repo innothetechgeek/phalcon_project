@@ -15,6 +15,10 @@ try {
      */
     $di = new FactoryDefault();
 
+    $di->set('flash', function() {
+        return new \Phalcon\Flash\Session;
+    });
+
     /**
      * Read services
      */
