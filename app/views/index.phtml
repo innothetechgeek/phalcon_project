@@ -23,7 +23,8 @@
       echo $this->tag->stylesheetLink('public/assets/css/now-ui-dashboard.css?v=1.5.0');
       echo $this->tag->stylesheetLink('public/assets/css/jquery.toast.min');
       echo $this->tag->stylesheetLink('public/assets/css/jquery-confirm.min.css');
-
+      echo $this->tag->stylesheetLink('public/assets/css/jquery-confirm.min.css');
+      echo $this->tag->stylesheetLink('public/assets/css/chosen.min');
     ?>
 
 </head>
@@ -208,6 +209,8 @@
 
   <?php echo $this->tag->javascriptInclude('public/js/jquery.toast.min'); ?>
   <?php echo $this->tag->javascriptInclude('public/js/jquery-confirm.min'); ?>
+  <?php echo $this->tag->javascriptInclude('public/js/chosen.jquery.min'); ?>
+
 
  
   
@@ -254,6 +257,14 @@
               }
         });
       })
+
+      //style and initialize the chosen_select plugin on the customer select box 
+      $('#customer').chosen();
+
+      //style and initialize the chosen_select plugin on the product select box 
+      $('#product').chosen();
+
+
   </script>
 </body>
 

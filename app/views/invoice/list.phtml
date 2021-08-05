@@ -37,6 +37,9 @@
                       <th class="text-right">
                         Date Created
                       </th>
+                      <th class="text-right">
+                          Action
+                      </th>
                     </thead>
                     <tbody>
                         
@@ -61,6 +64,16 @@
                                 </td>
                                 <td class="text-right">
                                     <?= $invoice['date_created'] ?>
+                                </td> 
+                                <td class="text-right">
+                                  <?php 
+                                      echo $this->tag->linkTo([
+                                            "invoice/pay/".$invoice['invoice_id'],
+                                            "PayInvoice",
+                                            "class" => "btn btn-primary",
+                                            "title" => "Edit Article"
+                                        ]);
+                                  ?>
                                 </td>                        
                             </tr>
                         <?php } ?>

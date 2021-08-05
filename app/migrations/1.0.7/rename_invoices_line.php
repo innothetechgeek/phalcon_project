@@ -5,10 +5,8 @@ use Phalcon\Db\Index;
 use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
 
-/**
- * Class InvoicesLineMigration_107
- */
-class InvoicesLineMigration_107 extends Migration
+//renames invoices_line table to invoice_lines
+class RenameInvoicesLineMigration_107 extends Migration
 {
     /**
      * Define the table structure
@@ -19,6 +17,8 @@ class InvoicesLineMigration_107 extends Migration
    
     public function morph()
     {
+          //renames the invoices_line table to invoice_lines
+          self::$connection->dropTable('invoices_line');
 
         $this->morphTable('invoice_lines', [
                 'columns' => [

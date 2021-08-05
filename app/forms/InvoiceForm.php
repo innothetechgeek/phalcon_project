@@ -68,10 +68,10 @@ class InvoiceForm extends Form{
         ]);
         
 
-
+        $btn_value = empty($this->view->invoice_details) ? "Add" : "Pay";
         $save = new Submit('update', [
             "name" => "update",
-            "value" => "save",
+            "value" => $btn_value,
             "class" => "btn btn-primary btn-block",
         ]);
         
