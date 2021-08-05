@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"> 
+            <h5 class="title">Login</h5>
+            </div>
+            <div class="card-body">
+            <?= $this->tag->form("operator/loginSubmit") ?>
+                <div class="row">
+                <div class="col-md-10 pr-1">
+                    <div class="form-group">
+                        <label>username:  </label>
+                            <?= $form->render('username'); ?>
+                      
+                </div>
+               <div class="form-group">
+                    <label>Password:</label>
+                    <?= $form->render('password'); ?>                       
+                </div>                
+                <div class="col-12 d-flex justify-content-end">                      
+                    <div class="col-6">                    
+                        <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-block">
+                    </div>                                        
+                </div>                 
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

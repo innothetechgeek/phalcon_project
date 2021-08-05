@@ -3,10 +3,10 @@
         <div class="col-md-8">
         <div class="card">
             <div class="card-header"> 
-            <h5 class="title">Pay Invoice</h5>
+            <h5 class="title">Login</h5>
             </div>
             <div class="card-body">
-            <?= $this->tag->form("customer/addSubmit"); ?>
+            <?= $this->tag->form("invoice/paySubmit/".$this->view->invoice_details[0]['invoice_id']); ?>
                 <div class="row">
                 <div class="col-md-6 pr-1">
                     <div class="form-group">
@@ -26,7 +26,7 @@
                 <div class="col-md-6 pl-1">
                     <div class="form-group">
                         <label>Payment Amount:</label>
-                        <input type ="number" class = "form-control"/>                        
+                        <input type ="number" name="amount" class = "form-control"/>                        
                     </div>
                 </div>
                 </div>

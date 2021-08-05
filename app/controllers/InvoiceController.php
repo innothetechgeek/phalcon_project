@@ -24,12 +24,14 @@ class InvoiceController extends ControllerBase{
         $sql_query = "SELECT customers.name as customer_name,
                         products.name as product_name,invoices.description,
                         invoices.date_created,invoices.amount as amount_due,
-                        IFNULL(payment.amount, 'Unpaid') as amount_paid,invoices.id as invoice_id
+                        sum(IFNULL(payment.amount, 'Unpaid')) as amount_paid,invoices.id as invoice_id
                         FROM invoices
                         JOIN customers on invoices.customer_id = customers.id
                         JOIN invoice_lines on invoice_lines.invoice_id = invoices.id
                         JOIN products on products.id = invoice_lines.product_id
-                        LEFT join payment on invoices.id = payment.invoice_id";
+                        LEFT join payment on invoices.id = payment.invoice_id
+                        GROUP BY payment.customer_id,invoice_id
+                        ORDER BY invoices.id DESC";
 
         $invoices = $this->crud->read($sql_query);   
         
@@ -94,6 +96,30 @@ class InvoiceController extends ControllerBase{
 
        $this->view->invoice_details =  $invoice_details;
        $this->view->form = new InvoiceForm();
+
+    }
+
+    public function paySubmitAction($invoice_id){
+
+       $query = "SELECT customers.id as customer_id
+                FROM invoice_lines
+                JOIN invoices ON invoices.id = invoice_lines.invoice_id
+                JOIN customers on invoices.customer_id = customers.id
+                where invoice_lines.invoice_id = $invoice_id";
+
+    
+        $customer_id = $this->crud->read($query)[0]['customer_id'];
+
+        $payment = [
+                    'invoice_id' => $invoice_id,
+                    'customer_id' =>  $customer_id,
+                    'amount' => $this->request->getPost('amount'),
+                    'date_created' => date("Y-m-d")
+        ];
+
+       $this->crud->create($payment,'payment');
+
+            
 
     }
 
